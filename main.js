@@ -18,7 +18,7 @@ document.querySelector(".js-userinput").addEventListener('keyup', function(e) {
 function search(input) {
     document.querySelector(".js-container").innerHTML = "";
 
-    var url = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + input;
+    var url = "//api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + input;
 
     var giphyAJAXCall = new XMLHttpRequest();
     giphyAJAXCall.open('GET', url);
