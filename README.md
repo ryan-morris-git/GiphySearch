@@ -1,2 +1,4 @@
 # [GiphySearch](https://ryan-morris-git.github.io/GiphySearch/)
-Search .gifs using the Giphy API and JavaScript
+A page that enables a user to search and find Gifs using the Giphy API
+
+Made as a part of the OneMonth learn JavaScript program
