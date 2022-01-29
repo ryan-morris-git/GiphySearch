@@ -4,16 +4,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Giphy Search</title>
-		<link rel = "stylesheet" href = "styles.css">
+		<link rel="stylesheet" href="styles.css">
 	</head>
 
-<body>
-	<div class="container container-padding50">
-		<input type="text" class="js-userinput container-textinput" placeholder="Search for GIFs"/>
-		<button class="searchButton container-button">Search</button>
-	</div>
-	<div class="container container-padding50 js-container">
-	</div>
-	<script src="main.js"></script>
-</body>
+	<body>
+		<div class="curved">
+			<div class="container container-padding50">
+				<input class="js-userinput container-textinput" id="searchBox" type="text" />
+				<button class="searchButton container-button">Search</button>
+				<h2 id="searchString" class="searchString"></h2>
+			</div>
+		</div>
+		<div class="container container-padding50 js-container">
+		</div>
+		<script src="main.js"></script>
+	</body>
 </html>

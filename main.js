@@ -1,31 +1,50 @@
+
+let searchQuery = document.getElementById("searchBox").value;
+
+getSearchString();
+
 //Checks for if the user has clicked the "Search" button and assigns the text in the search box to the variable "input"
 document.querySelector(".searchButton").addEventListener('click', function() {
-    var input = document.querySelector("input").value;
-    console.log(input);
+    let input = document.querySelector("input").value;
+    getSearchString();
     search(input);
 });
+
 //Updates the "input" variable each time a key is released and searches when the user hits Enter/Return
 document.querySelector(".js-userinput").addEventListener('keyup', function(e) {
-    var input = document.querySelector("input").value;
-    console.log(input);
-
-    if (e.which === 13) {
-        search(input)
-    }
+    let input = document.querySelector("input").value;
+    getSearchString();
+    search(input);
 });
+
+function copyImage(url) {
+    console.log(url);
+}
+
+function getSearchString() {
+    searchQuery = document.getElementById("searchBox").value;
+    
+    if(searchQuery === "") { 
+        document.getElementById("searchString").innerHTML = "Enter a search term to find GIFs";
+    } else if (searchQuery != "" && document.querySelector(".js-container").innerHTML == "") {
+        document.getElementById("searchString").innerHTML = `Searching for ${searchQuery}...`
+    } else {
+        document.getElementById("searchString").innerHTML = `Here are the results for "${searchQuery}" <br> Click on a GIF to copy its URL to the clipboard.`
+    }
+}
 
 //Defining the search function, appends the users search query to the end of the search URL for the Giphy API
 function search(input) {
     document.querySelector(".js-container").innerHTML = "";
 
-    var url = "//api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + input;
+    let url = "http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + input;
 
-    var giphyAJAXCall = new XMLHttpRequest();
+    let giphyAJAXCall = new XMLHttpRequest();
     giphyAJAXCall.open('GET', url);
     giphyAJAXCall.send();
 
     giphyAJAXCall.addEventListener('load', function(e) {
-        var data = e.target.response;
+        let data = e.target.response;
         pushToDom(data)
     });
 }
@@ -33,15 +52,15 @@ function search(input) {
 //Defining the function to push the image URLs to the DOM and display them in containers
 function pushToDom(input) {
 
-    var response = JSON.parse(input);
+    let response = JSON.parse(input);
 
-    var imageURLs = response.data;
+    let imageURLs = response.data;
 
     imageURLs.forEach(function(image) {
-        var src = image.images.fixed_height.url;
+        let src = image.images.fixed_height.url;
         
-        var container = document.querySelector(".js-container");
+        let container = document.querySelector(".js-container");
 
-        container.innerHTML += "<a href = " + src + ">" + "<img src=\"" + src + "\" class=\"container-image\"></a>";
+        container.innerHTML += `<a href="javascript:void(0)" onclick="navigator.clipboard.writeText('${src}'); alert('URL copied to the clipboard.')"><img src="${src}" class="container-image"></a>`;
     });
 }
