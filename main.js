@@ -12,9 +12,7 @@ document.querySelector(".searchButton").addEventListener('click', function() {
 
 //Updates the "input" variable each time a key is released and searches when the user hits Enter/Return
 document.querySelector(".js-userinput").addEventListener('keyup', function(e) {
-    let input = document.querySelector("input").value;
     getSearchString();
-    search(input);
 });
 
 function copyImage(url) {
@@ -27,7 +25,7 @@ function getSearchString() {
     if(searchQuery === "") { 
         document.getElementById("searchString").innerHTML = "Enter a search term to find GIFs";
     } else if (searchQuery != "" && document.querySelector(".js-container").innerHTML == "") {
-        document.getElementById("searchString").innerHTML = `Searching for ${searchQuery}...`
+        document.getElementById("searchString").innerHTML = `Click the search button to search for ${searchQuery}`
     } else {
         document.getElementById("searchString").innerHTML = `Here are the results for "${searchQuery}" <br> Click on a GIF to copy its URL to the clipboard.`
     }
